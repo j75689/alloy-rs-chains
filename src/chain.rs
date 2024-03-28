@@ -417,6 +417,18 @@ impl Chain {
         )
     }
 
+    /// Returns true if the gas refund is disabled for the chain.
+    #[inline]
+    pub const fn is_gas_refund_disabled(self) -> bool {
+        matches!(
+            self.kind(),
+            ChainKind::Named(
+                NamedChain::OpBNBMainnet
+                    | NamedChain::OpBNBTestnet
+            )
+        )
+    }
+
     /// Attempts to convert the chain into a named chain.
     #[inline]
     pub const fn named(self) -> Option<NamedChain> {
