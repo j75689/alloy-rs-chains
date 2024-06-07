@@ -248,6 +248,12 @@ pub enum NamedChain {
         serde(rename = "opbnb_testnet", alias = "opbnb-testnet", alias = "op-bnb-testnet")
     )]
     OpBNBTestnet = 5611,
+    #[strum(to_string = "opbnb-qa")]
+    #[cfg_attr(
+        feature = "serde",
+        serde(rename = "opbnb_qa", alias = "opbnb-qa", alias = "op-bnb-qa")
+    )]
+    OpBNBQA = 6495,
 }
 
 // This must be implemented manually so we avoid a conflict with `TryFromPrimitive` where it treats
@@ -474,7 +480,7 @@ impl NamedChain {
             | C::MantleTestnet
             | C::KakarotSepolia => return None,
 
-            C::OpBNBMainnet | C::OpBNBTestnet => 1_000,
+            C::OpBNBMainnet | C::OpBNBTestnet | C::OpBNBQA => 1_000,
         }))
     }
 
@@ -562,7 +568,8 @@ impl NamedChain {
             | C::EtherlinkTestnet
             | C::Degen
             | C::OpBNBMainnet
-            | C::OpBNBTestnet => false,
+            | C::OpBNBTestnet
+            | C::OpBNBQA => false,
 
             // Unknown / not applicable, default to false for backwards compatibility.
             C::Dev
@@ -625,7 +632,8 @@ impl NamedChain {
             | C::Scroll
             | C::ScrollSepolia
             | C::OpBNBMainnet
-            | C::OpBNBTestnet => true,
+            | C::OpBNBTestnet
+            | C::OpBNBQA => true,
             _ => false,
         }
     }
@@ -687,7 +695,8 @@ impl NamedChain {
             | C::PgnSepolia
             | C::KakarotSepolia
             | C::EtherlinkTestnet
-            | C::OpBNBTestnet => true,
+            | C::OpBNBTestnet
+            | C::OpBNBQA => true,
 
             // Dev chains.
             C::Dev | C::AnvilHardhat => true,
@@ -757,7 +766,8 @@ impl NamedChain {
             C::BinanceSmartChain
             | C::BinanceSmartChainTestnet
             | C::OpBNBMainnet
-            | C::OpBNBTestnet => "BNB",
+            | C::OpBNBTestnet
+            | C::OpBNBQA => "BNB",
 
             C::EtherlinkTestnet => "XTZ",
 
@@ -1049,6 +1059,7 @@ impl NamedChain {
             | C::BinanceSmartChainTestnet
             | C::OpBNBMainnet
             | C::OpBNBTestnet
+            | C::OpBNBQA
             | C::Arbitrum
             | C::ArbitrumTestnet
             | C::ArbitrumGoerli

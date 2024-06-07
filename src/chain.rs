@@ -396,6 +396,12 @@ impl Chain {
         Self::from_named(NamedChain::OpBNBTestnet)
     }
 
+    /// Returns the opbnb qa chain.
+    #[inline]
+    pub const fn opbnb_qa() -> Self {
+        Self::from_named(NamedChain::OpBNBQA)
+    }
+
     /// Returns the kind of this chain.
     #[inline]
     pub const fn kind(&self) -> &ChainKind {
@@ -433,6 +439,7 @@ impl Chain {
                     | NamedChain::BlastSepolia
                     | NamedChain::OpBNBMainnet
                     | NamedChain::OpBNBTestnet
+                    | NamedChain::OpBNBQA
             )
         )
     }
