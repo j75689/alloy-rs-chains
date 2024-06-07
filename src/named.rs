@@ -861,6 +861,9 @@ impl NamedChain {
             C::OpBNBTestnet => {
                 ("https://opbnb-testnet.bscscan.com/api", "https://opbnb-testnet.bscscan.com")
             }
+            C::OpBNBQA => {
+                ("", "")
+            }
 
             C::Arbitrum => ("https://api.arbiscan.io/api", "https://arbiscan.io"),
             C::ArbitrumTestnet => {
